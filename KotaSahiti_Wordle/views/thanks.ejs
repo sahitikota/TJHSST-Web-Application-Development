@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/2023skota/css/style.css" rel="stylesheet">
+    <title>Thank You</title>
+
+</head>
+<body>
+
+    <div >
+        <h2>
+            Thank you for submitting.
+        </h2>
+        <hr>
+    </div>
+
+    <div>
+        <p>Your vote has been recorded. Current vote count below.</p>
+        <% for(let i=0; i<nail_names.length; i++) { %>
+            <p> </p><%=nail_names[i].char_name%> : <%=nail_names[i].votes%></p>
+            
+        <% } %>
+    </div>
+
+</body>
+</html>

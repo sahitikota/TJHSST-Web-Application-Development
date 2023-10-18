@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cookies</title>
+    </head>
+    <body>
+        <p id="counter">Counter: <%= count %></p>
+        <p><input type="button" value="Add" onclick="addCounter()"></p> <!-- onclick listener that calls addCounter() when button is clicked -->
+        <p><input type="button" value="Reset" onclick="resetCounter()"></p> <!-- calls resetCounter() when button is clicked -->
+        <script>
+            async function addCounter() { // async function
+                const response = await fetch('/add', {method: 'POST'}) // sends POST request to /add
+                const data = await response.json() // parses response as JSON
+                document.getElementById('counter').innerHTML = 'Counter: ' + data.count // uses innerHTML to change counter to data.count
+                return
+            }
+            async function resetCounter() {
+                const response = await fetch('/reset', {method: 'POST'}) // sends POST request to /reset
+                const data = await response.json() // parses response as JSON
+                document.getElementById('counter').innerHTML = 'Counter: ' + data.count // uses innerHTML to change counter to data.count
+                return
+            }
+        </script>
+    </body>
+</html>

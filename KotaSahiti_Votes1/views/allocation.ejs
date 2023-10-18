@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/2023skota/css/style.css" rel="stylesheet">
+    <title> Nail Voting </title>
+</head>
+
+<body>
+    <div>
+        <h3> Nail Voting </h3>
+    </div>
+    <div>
+        <form action="/2023skota/voting/do_votes" method="GET">
+            <% for(let i=0; i<nail_names.length; i++) { %>
+                <input type="radio" name="nail_img_id" value=<%=nail_names[i].nails_id%>>
+                <label ><%=nail_names[i].char_name%></label>
+                <% } %>
+        
+            </select>
+          <button type="submit">Allocate Points</button>
+        </form>
+        </div>
+        <div>
+            <img src="/2023skota/img/CobwebNails.jpg" height="200">
+            <img src="/2023skota/img/FlameNails.jpg" height="200">
+            <img src="/2023skota/img/GhostNails.jpg" height="200">
+            <img src="/2023skota/img/HalloweenFrench.jpg" height="200">
+            <img src="/2023skota/img/PolkaDot.png" height="200">
+            <img src="/2023skota/img/PurpleFrench.jpg" height="200">
+            <img src="/2023skota/img/ChristmasNails.jpg" height="200">
+        </div>
+    
+</body>
+</html>

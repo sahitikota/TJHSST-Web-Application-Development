@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/2023skota/css/style.css" rel="stylesheet">
+    <title> Sahiti's Madlibs </title>
+</head>
+
+<body>
+    <div class = 'shape'>
+    <h2> Sahiti's Madlibs </h2>
+    </div>
+    <form action="madlibs_results" method='POST'>
+      <ul>
+      <li> What is your name? <input type="text" name="name1"></li>
+      <li> Enter another name: <input type="text" name="name2"></li>
+      <li> Name a color: <input type="text" name="color"></li>
+      <li> Name a food (plural): <input type="text" name="food"></li>
+      <li> Choose activities: </li>
+          <input type="checkbox" name="activity" value="eat">
+          <label for="activity1"> eat </label><br>
+          <input type="checkbox" name="activity" value="play">
+          <label for="activity2"> play </label><br>
+          <input type="checkbox" name="activity" value="read">
+          <label for="activity3"> read </label>
+      <li> Name something gross: <input type="text" name="gross"></li>
+      <li> Choose a car: </li>
+        <input type="radio" name="car" value="bmw">
+            <label >BMW</label><br>
+        <input type="radio" name="car" value="miata">
+            <label >Miata</label><br>  
+        <input type="radio" name="car" value="ferrari">
+            <label >Ferrari</label><br><br>
+      <button type="submit"> Enter </button>
+      <input type="reset" name = "reset" id = "reset">
+    </ul>
+    </form>
+  </div>
+</body>
+</html>
