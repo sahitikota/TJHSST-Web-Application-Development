@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Login </title>
+</head>
+<body>
+    <p id = "intro-text"> Log in to access premium content. </p>
+    <button type="button" onclick="logIn()" id="log-in-button"> Log In </button>
+    <p id="login-text"></p>
+    <a href = "https://user.tjhsst.edu/2023skota/cookies/clickpage" id="return-link"></a>
+    <script type="text/javascript">
+        const AUTHENT_COOKIE = 'authenticated'
+        function logIn() {
+            let authenticated = 1;
+            writeCookieToBrowser(AUTHENT_COOKIE, authenticated);
+            document.getElementById('intro-text').innerHTML = '';
+            document.getElementById('login-text').innerHTML = 'Succesfully authenticated!';
+            document.getElementById('return-link').innerHTML = 'Return back to the cookies page';
+            document.getElementById('login-button').style.visibility = 'hidden';
+        }
+        function writeCookieToBrowser(cookie_name,cookie_value){
+            cookieStore.get(cookie_name).then( function(cookie){
+            let expiration = new Date(cookie.expires).toUTCString()
+            let cookie_string = `${cookie_name}=${cookie_value}; expires=${expiration};path=/`
+            console.log(cookie_string)
+          document.cookie = cookie_string;                                  
+    })
+  }
+    </script>
+  </body>
+</html>

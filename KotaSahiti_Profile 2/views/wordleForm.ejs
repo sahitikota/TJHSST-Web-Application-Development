@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/2023skota/css/style.css" rel="stylesheet">
+    <title> Wordle Cheat </title>
+</head>
+
+<body>
+  <div>
+    <p> Enter first letter if known: </p>
+    <p> <input id="letter1" input type="text" name="firstLetter"> </p>
+    <p> Enter second letter if known: </p>
+    <p> <input id="letter2" input type="text" name="secondLetter"> </p>
+    <p> Enter third letter if known: </p>
+    <p> <input id="letter3" input type="text" name="thirdLetter">
+    <p> Enter fourth letter if known: </p>
+    <p> <input id="letter4" input type="text" name="fourthLetter"> </p>
+    <p> Enter fifth letter if known: </p> 
+    <p> <input id="letter5" input type="text" name="fifthLetter"> </p>
+      <button type="submit" onclick="fetch_and_update()"> Enter </button>
+  </div>
+  
+  <div>
+      <ul id="output_space">
+        
+      </ul>
+  </div>
+  
+  <script type="text/javascript">
+        async function fetch_and_update() {
+            // PARSE THE CONDITIONS FROM THE USER INTERFACE            
+            let first_letter_element = document.querySelector('#letter1')
+            let letterOne = first_letter_element.value;
+            
+            let second_letter_element = document.querySelector('#letter2')
+            let letterTwo = second_letter_element.value;
+            
+            let third_letter_element = document.querySelector('#letter3')
+            let letterThree = third_letter_element.value;
+            
+            let fourth_letter_element = document.querySelector('#letter4')
+            let letterFour = fourth_letter_element.value;
+            
+            let fifth_letter_element = document.querySelector('#letter5')
+            let letterFive = fifth_letter_element.value;
+
+            // GENERATE THE URL
+            let url = `https://user.tjhsst.edu/2023skota/enable/?letter1=${letterOne}&letter2=${letterTwo}&letter3=${letterThree}&letter4=${letterFour}&letter5=${letterFive}`
+
+            // DO THE DOWNLOAD
+            const response = await fetch(url)
+            const data = await response.json()
+            console.log(data)
+
+            // COMMUNICATE RESPONSE INTO THE PAGE
+
+            let output_UL = document.getElementById('output_space') // get target in DOM
+            output_space.innerHTML = null;                          // clear existing li's/content
+
+            if (Object.keys(data).length === 0) {
+                // the data object is empty
+                output_space.innerHTML = 'No words match your query'; 
+            } else {
+                // there are words
+                for (let i=0;i<data.words.length;i++){
+                    let new_element = document.createElement('li')  // create a new <li> element
+                    new_element.innerHTML = data.words[i];
+                    output_UL.appendChild( new_element )
+                }
+            }
+        }
+
+    </script>  
+    
+</body>
+</html>

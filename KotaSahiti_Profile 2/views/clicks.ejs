@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/2023skota/css/cookie.css" rel="stylesheet">
+  <title>Cookie Page</title>
+</head>
+
+<body>
+  <p id = 'clicks-text'>
+    Your current click counts is: <span id="clicks"><%=clicks%></span>
+  </p>
+
+
+ <button type="button" onclick="buttonClickCallback()" id = "cookie-button"><img src="/2023skota/img/cookie2.png"  height="200"/></button>
+ <button type="button" onclick="logOut()" id="log-out-button"> Log Out </button>
+
+ <script type="text/javascript">
+
+  const MY_COOKIE_NAME = 'clicks';                                      // the name (key) of the cookie that the page
+                                                                        //  will be accessing
+
+  /* ---- A CALLBACK FUNCTION THAT USES THE COOKIE ----  */
+
+  function buttonClickCallback() {
+
+    let num_clicks_string = readCookieFromBrowser(MY_COOKIE_NAME);      // read cookie from browser
+    
+    let num_clicks = Number(num_clicks_string) + 1;                     // convert to Number
+    
+    document.getElementById('clicks').innerHTML = num_clicks;           // update UI with new value
+    
+    writeCookieToBrowser(MY_COOKIE_NAME,num_clicks);                    // update cookie value in browser
+  }
+
+  /* ---- A FUNCTION TO WRITE A COOKIE ----  */
+
+  function writeCookieToBrowser(cookie_name,cookie_value){
+
+    // get the cookie from cookie store (asynchronous promise based fcn)
+    cookieStore.get(cookie_name).then( function(cookie){
+
+      let expiration = new Date(cookie.expires).toUTCString()           // define expiration of cookie
+
+                                                                        // create a properly formatted cookiestring        
+      let cookie_string = `${cookie_name}=${cookie_value}; expires=${expiration};path=/`
+      console.log(cookie_string)
+
+      document.cookie = cookie_string;                                  // write the cookie to the browser
+    })
+  }
+
+  /* ---- A FUNCTION TO READ A COOKIE ----  */
+
+  function readCookieFromBrowser(cookie_to_parse_out){
+    let decodedCookie = decodeURIComponent(document.cookie);            // read all cookies from the browser
+    
+    let all_cookies_array = decodedCookie.split('; ');                  // convert all cookies into an array
+    
+                                                                        // find the index that contains our cookie
+    let specific_cookie_row = all_cookies_array.find( function(arr_elem){
+      return arr_elem.startsWith(`${cookie_to_parse_out}=`);            // return the element that matches
+    })
+
+    let desired_cookie_key_val = specific_cookie_row.split('=');        // split key/value pairs
+
+    let desired_cookie_key = desired_cookie_key_val[0]                  // the key of the cookie
+    let desired_cookie_val = desired_cookie_key_val[1]                  // the value of the cookie
+    
+    return desired_cookie_val;                                          // return the value of the cookie
+  }
+  const AUTHENT_COOKIE = 'authenticated'
+  function logOut () {
+      let authenticated = 0;
+        writeCookieToBrowser(AUTHENT_COOKIE, authenticated);
+        document.getElementById('log-out-button').style.visibility = 'hidden';
+        document.getElementById('cookie-button').style.visibility = 'hidden';
+        document.getElementById('clicks-text').innerHTML = 'Succesfully logged out!';
+  }
+
+  </script>
+</body>
+</html>

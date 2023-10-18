@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/2023skota/css/style.css" rel="stylesheet">
+    <title>Madlibs Results</title>
+</head>
+
+<body>
+  <h3>Your Madlib:</h3>
+  <div>
+    <p>
+      Thank you for submitting!
+    </p>
+    <p>
+        <%= name1 %> went on a picnic date yesterday. They were so excited they dressed in their nicest <%= color %> shirt and jeans. 
+    </p>
+    <p>
+        They headed down to their local diner to pick up some <%= food %> before starting their walk to their local park where they were meeting up with <%= name2 %>.
+    </p>
+    <p>
+        They had planned every activity they were going to do! They were going to <%= activity %>, and watch the sunset.
+    </p>
+    <p>
+        At the end of the date, <%= name1 %> decided to make a big move. They gathered up all their courage and moved next to <%= name2 %> to lay a big smooch!
+    </p>
+    <p>
+        However, right before they kissed, the most rancid smell of <%= gross %> hit <%= name1 %>.
+    </p>
+    <p>
+        "P.U.!" they yelled as they leapt away. They were so disgusted and immediately drove off in their <%= car %>.
+    </p>
+    <h3>The End!</h3>
+    <% if (car == 'miata') { %> 
+        <img src="/2023skota/img/miata.jpeg" height="200">
+    <% } %>
+    <% if (car == 'bmw') { %> 
+        <img src="/2023skota/img/bmw.jpeg" height="600">
+    <% } %>
+    <% if (car == 'ferrari') { %> 
+        <img src="/2023skota/img/ferrari.jpeg" height="600">
+    <% } %>
+  </div>
+</body>
+</html>

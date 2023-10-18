@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Verification</title>
+</head>
+<body>
+  <p>You are totally verified.</p>
+  <p>
+  </p>
+  <ul id="output_space">
+        Hello there: <%= display_name %><br>
+    <p> Enter a nickname: </p>
+    <p> <input id="nick1" input type="text" name="nickname"> </p>
+    <button type="submit" onclick="fetch_and_update()"> Enter </button>
+    </ul>
+  <script type="text/javascript">
+     async function fetch_and_update() {
+            // PARSE THE CONDITIONS FROM THE USER INTERFACE            
+            let nick_name = document.querySelector('#nick1')
+            let nicknameEntered = nick_name.value;
+            
+            
+            // COMMUNICATE RESPONSE INTO THE PAGE
+
+            let output_UL = document.getElementById('output_space') // get target in DOM
+            output_space.innerHTML = null;                          // clear existing li's/content
+            output_space.innerHTML = 'Hi ' + nicknameEntered + "!"; 
+            
+     }
+    </script>  
+  
+</body>
+</html>
